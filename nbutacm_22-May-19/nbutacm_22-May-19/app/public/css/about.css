@@ -1,0 +1,119 @@
+body {}
+
+#timeline {
+  font-family: tahoma;
+  font-size: 15px;
+  line-height: 1.75;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  background-color: #031725;
+}
+
+#timeline:hover .item {
+  width: 23.3333%;
+}
+
+.item {
+  transform: translate3d(0, 0, 0);
+  position: relative;
+  width: 20%;
+  height: 100vh;
+  min-height: 600px;
+  color: white;
+  overflow: hidden;
+  transition: width .5s ease;
+}
+
+.item:before, .item:after {
+  transform: translate3d(0, 0, 0);
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*.item:after{*/
+/*background: rgba(21,126,209,0.85);*/
+/*opacity: 1;*/
+/*transition: opacity .5s ease;*/
+/*}*/
+.item:before {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 75%);
+  z-index: 1;
+  opacity: 0;
+  transform: translate3d(0, 0, 0) translateY(50%);
+  transition: opacity .5s ease, transform 0.5s ease;
+}
+
+.item:hover .item:before .item:after {
+  opacity: 0;
+}
+
+.item:hover {
+  width: 30% !important;
+}
+
+.item:hover .content {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all .75s ease .5s;
+}
+
+.item:hover .bg {
+  filter: grayscale(0);
+}
+
+.content {
+  transform: translate3d(0, 0, 0) translateY(25px);
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin: 0 1.618em;
+  top: 55%;
+  opacity: 0;
+}
+
+.content h1 {
+  font-family: tahoma;
+  text-transform: uppercase;
+  color: deepskyblue;
+  font-size: 1.44rem;
+  font-weight: normal;
+}
+
+.year {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 1;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.year p {
+  font-family: tahoma;
+  font-size: 1.728rem;
+  line-height: 0;
+}
+
+p {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.bg {
+  transform: translate3d(0, 0, 0);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center center;
+  transition: filter .5s ease;
+  filter: grayscale(100%);
+}

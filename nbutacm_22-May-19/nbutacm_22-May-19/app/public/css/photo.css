@@ -1,0 +1,27 @@
+.photo-hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: all .5s ease;
+  opacity: 0;
+  background: rgba(254, 209, 54, .9)
+}
+
+.photo-hover:hover {
+  opacity: 1
+}
+
+.photo-hover .photo-hover-content {
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 20px;
+  margin-top: -12px;
+  text-align: center;
+  color: #fff
+}
+
+.photo-hover .photo-hover-content i {
+  margin-top: -20px
+}

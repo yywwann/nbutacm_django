@@ -1,0 +1,41 @@
+version: '3'
+
+volumes:
+  static:
+  database:
+
+services:
+  redis:
+    image: redis
+    container_name: nbutacm_redis
+    command: redis-server --requirepass szdfhjklhasjklfe
+    ports:
+      - "6379:6379"
+
+  nbutacm:
+    build:
+      context: .
+      dockerfile: compose/production/django/Dockerfile
+    image: nbutacm
+    container_name: nbutacm
+    working_dir: /app
+    volumes:
+      - database:/app/database
+      - static:/app/static
+    #env_files:
+    #  - .envs/.production
+    ports:
+      - "8000:8000"
+    command: /start.sh
+
+  nbutacm_nginx:
+    build:
+      context: .
+      dockerfile: compose/production/nginx/Dockerfile
+    image: nbutacm_nginx
+    container_name: nbutacm_nginx
+    volumes:
+      - static:/apps/nobb_web_back/static
+    ports:
+      - "80:80"
+
