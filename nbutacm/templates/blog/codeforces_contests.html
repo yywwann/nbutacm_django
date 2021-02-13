@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/css/contest.css' %}">
+{% endblock css %}
+
+{% block main %}
+
+
+<div id="loading">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_one"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_five"></div>
+            <div class="object" id="object_six"></div>
+            <div class="object" id="object_seven"></div>
+            <div class="object" id="object_eight"></div>
+            <div class="object" id="object_big"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 120px; width: auto;">
+    <table style="width: 90%;margin-left: 5%;" class="table table-hover">
+
+        <div style="width: 100%; text-align: center;">
+            <h1>Codeforces Recent Contests</h1>
+        </div>
+
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th style="width: 150px">Start Time</th>
+            <th>Length</th>
+            <th>State</th>
+        </tr>
+        </thead>
+
+        <tbody id="ContestList">
+        <!-- js添加内容 -->
+        </tbody>
+
+    </table>
+</div>
+
+
+{% endblock main %}
+
+{% block js %}
+<script src="{% static '/js/contest.js' %}" type="text/javascript" charset="utf-8"></script>
+{% endblock js %}
+

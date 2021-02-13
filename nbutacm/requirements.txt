@@ -10,3 +10,4 @@ wincertstore==0.2
 gunicorn
 django-redis
 mysqlclient==1.4.6
+markdown

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/css/markdown.css' %}">
+{% endblock css %}
+
+
+{% block main %}
+<div class="container" style="margin-top: 120px; width: 60%; ">
+    <div class="row">
+        <div class="markdown-body">
+            {{ post.body|safe }}
+        </div>
+    </div>
+</div>
+{% endblock main %}
+
+
+{% block js %}
+<script src="{% static '/js/markdown.js' %}"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+{% endblock js %}

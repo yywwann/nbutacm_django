@@ -7,4 +7,4 @@ class PostAdmin(admin.ModelAdmin):
     fields = ['title', 'body']
 
 
-admin.site.register(Post)
+admin.site.register(Post, PostAdmin)

@@ -1,0 +1,12 @@
+<li class="nav-item dropdown">
+    <a class="dropdown-toggle nav-link" data-toggle="dropdown"
+                                 aria-expanded="false" href="#">题解报告</a>
+    <div class="dropdown-menu text-monospace border-dark" role="menu"
+         style="background-color: #ffffff;">
+        {% for post in recent_post_list %}
+        <a class="dropdown-item" role="presentation" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        {% empty %}
+        {% endfor %}
+        <a class="dropdown-item" role="presentation" href="{% url 'blog:post_list' %}">全部题解</a>
+    </div>
+</li>
