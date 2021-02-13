@@ -4,16 +4,49 @@ volumes:
   database_local:
 
 services:
+
+  mysql:
+    image: mysql
+    container_name: nbutacm_local_mysql
+    hostname: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password --mysqlx=0
+    ports:
+      - 3306:3306
+    volumes:
+      - ./database_local:/var/lib/mysql
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=nbutacm_mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=iillIILL!!11iill
+      - MYSQL_ROOT_PASSWORD=iillIILL!!11iill
+
+  redis:
+    image: redis
+    container_name: nbutacm_local_redis
+    command: redis-server --requirepass szdfhjklhasjklfe
+    ports:
+      - "6379:6379"
+    restart: always
+
   nbutacm_local:
     build:
       context: .
-      dockerfile: ./compose/local/Dockerfile
+      dockerfile: compose/local/Dockerfile
     image: nbutacm_local
     container_name: nbutacm_local
     working_dir: /app
     volumes:
-      - database_local:/app/database
+      - ./database_local:/app/database
       - .:/app
+    #env_files:
+    #  - .envs/.production
     ports:
       - "8000:8000"
     command: /start.sh
+    depends_on:
+      - mysql
+    restart: always
+

@@ -68,9 +68,31 @@ WSGI_APPLICATION = 'nbutacm.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'database', 'db.sqlite3'),
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'database', 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
+        'NAME': 'nbutacm_mysql',  # 数据库名
+        'USER': 'root',  # 账号
+        'PASSWORD': 'iillIILL!!11iill',  # 密码
+        # 'HOST': 'host',  # HOST
+        'HOST': 'mysql',  # HOST
+        'POST': 3306,  # 端口
+    }
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",		# 使用django-redis的缓存
+        "LOCATION": "redis://redis:6379",			# redis数据库的位置
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "CONNECTION_POOL_KWARGS": {"max_connections": 100},
+            "DECODE_RESPONSES": True,			# 自动将byte转成字符串
+            "PASSWORD": "szdfhjklhasjklfe",						# 设置密码
+        }
     }
 }
 

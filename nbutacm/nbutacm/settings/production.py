@@ -8,15 +8,3 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['42.192.50.232']
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",		# 使用django-redis的缓存
-        "LOCATION": "redis://redis:6379",			# redis数据库的位置
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            "CONNECTION_POOL_KWARGS": {"max_connections": 100},
-            "DECODE_RESPONSES": True,			# 自动将byte转成字符串
-            "PASSWORD": "szdfhjklhasjklfe",						# 设置密码
-        }
-    }
-}

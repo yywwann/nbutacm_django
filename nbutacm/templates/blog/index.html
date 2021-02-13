@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 
@@ -5,24 +7,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>NBUT-ACM</title>
-  <link rel="icon" href="/public/img/ico_3.ico" />
+  <link rel="icon" href="{% static '/img/ico_3.ico' %}" />
   <!-- bootstrap -->
-  <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
   <!-- 图标 -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
-  <link rel="stylesheet" href="/public/fonts/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static '/img/ico_3.ico' %}/fonts/font-awesome.min.css">
   <!-- 滑动窗口 -->
-  <link rel="stylesheet" href="/public/css/Highlight-Clean.css">
+  <link rel="stylesheet" href="{% static '/css/Highlight-Clean.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
-  <link rel="stylesheet" href="/public/css/Simple-Slider.css">
+  <link rel="stylesheet" href="{% static '/css/Simple-Slider.css' %}">
   <!-- 照片 -->
-  <link rel="stylesheet" href="/public/css/baguetteBox.min.css">
-  <link rel="stylesheet" href="/public/css/photo.css">
+  <link rel="stylesheet" href="{% static '/css/baguetteBox.min.css' %}">
+  <link rel="stylesheet" href="{% static '/css/photo.css' %}">
   <!-- todilist -->
-  <link rel="stylesheet" href="/public/css/todolist.css">
+  <link rel="stylesheet" href="{% static '/css/todolist.css' %}">
 </head>
 
 <body id="page-top">
@@ -40,7 +42,7 @@
 
   <!-- TodoList -->
   <div id="todolist-icon">
-    <img src="public/img/todolist/todolist-icon.png">
+    <img src="{% static '/img/todolist/todolist-icon.png' %}">
     <p>Todo</p>
   </div>
   <div id="todolist" style="display: none;">
@@ -499,18 +501,18 @@
   <footer id="foot"></footer>
 
 </body>
-<script src="/public/js/jquery.min.js"></script>
-<script src="/public/js/profile.js"></script>
+<script src="{% static '/js/jquery.min.js' %}"></script>
+<script src="{% static '/js/profile.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script src="/public/js/bootstrap.min.js"></script>
-<script src="/public/js/agency.js"></script>
+<script src="{% static '/js/bootstrap.min.js' %}"></script>
+<script src="{% static '/js/agency.js' %}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
-<script src="/public/js/Simple-Slider.js"></script>
-<script src="/public/js/baguetteBox.min.js" async></script>
+<script src="{% static '/js/Simple-Slider.js' %}"></script>
+<script src="{% static '/js/baguetteBox.min.js' %}" async></script>
 
 
-<script src="/public/js/photo.js"></script>
-<script src="/public/js/todolist.js"></script>
+<script src="{% static '/js/photo.js' %}"></script>
+<script src="{% static '/js/photo.js' %}/js/todolist.js"></script>
 
 </html>
