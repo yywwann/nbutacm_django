@@ -10,6 +10,7 @@ $ docker-compose -f local.yml up
 
 ## 部署到开发环境
 ```shell script
+$ git pull
 $ docker-compose -f production.yml build  
 $ docker-compose -f production.yml up mysql
 $ docker-compose -f production.yml up
