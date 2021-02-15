@@ -12,6 +12,7 @@ $ docker-compose -f local.yml up
 ```shell script
 $ git pull
 $ docker-compose -f production.yml build  
-$ docker-compose -f production.yml up mysql
-$ docker-compose -f production.yml up
+# 先启动 mysql,几十秒后再 up 整个
+$ docker-compose -f production.yml up -d mysql
+$ docker-compose -f production.yml up -d
 ```
