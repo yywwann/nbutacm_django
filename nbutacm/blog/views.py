@@ -3,8 +3,12 @@ import markdown
 # Create your views here.
 from .models import Post
 from django.http import HttpResponse
+# redis cache
+from django.core.cache import cache
+from django.views.decorators.cache import cache_page
 
 
+@cache_page(60 * 60)
 def index(request):
     return render(request, 'blog/index.html', context={
     })
@@ -29,6 +33,7 @@ def detail(request, pk):
     })
 
 
+@cache_page(60 * 60)
 def codeforces_contests(request):
     return render(request, 'blog/codeforces_contests.html', context={
     })
