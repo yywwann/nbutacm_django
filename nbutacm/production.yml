@@ -55,6 +55,7 @@ services:
     container_name: nbutacm_nginx
     volumes:
       - ./static:/apps/nbutacm/static
+      - $(pwd)/logs/nginx:/var/log/nginx
     ports:
       - "80:80"
 
