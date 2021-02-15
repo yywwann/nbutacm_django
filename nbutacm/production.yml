@@ -54,7 +54,7 @@ services:
     image: nbutacm_nginx
     container_name: nbutacm_nginx
     volumes:
-      - static:/apps/nobb_web_back/static
+      - static:/apps/nbutacm/static
     ports:
       - "80:80"
 
