@@ -272,6 +272,7 @@
                 <div class="timeline-body">
                   <p class="text-muted">陈鸿宇、傅贤达、王超</p>
                   <h3 class="text-muted" style="color:#A52A2A !important">铜</h3>
+                  <p class="text-muted">奠定了 glj 统治的地位</p>
                 </div>
                 <h1>GLJNB!</h1>
               </div>
