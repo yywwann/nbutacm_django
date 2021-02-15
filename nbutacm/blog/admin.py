@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, MemberInfo, MemberGrade
+from .models import Post, MemberInfo, MemberGrade, ActivityGalleryPhoto, ActivityGallery, ConfigInfo
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -10,3 +10,7 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 admin.site.register(MemberInfo)
 admin.site.register(MemberGrade)
+admin.site.register(ActivityGalleryPhoto)
+admin.site.register(ActivityGallery)
+admin.site.register(ConfigInfo)
+
