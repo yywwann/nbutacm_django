@@ -77,9 +77,8 @@ class ActivityGalleryPhoto(models.Model):
         return self.photo_url
 
 
-
 class ConfigInfo(models.Model):
-    index_photo_url = models.CharField('图片地址', max_length=200)
+    index_photo_url = models.CharField('主页图片地址', max_length=200)
 
     class Meta:
         verbose_name = '配置信息'

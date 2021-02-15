@@ -7,10 +7,30 @@ class PostAdmin(admin.ModelAdmin):
     fields = ['title', 'body']
 
 
+class MemberGradeAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+
+class MemberInfoAdmin(admin.ModelAdmin):
+    list_display = ['name', 'color', 'url', 'grade']
+
+
+class ActivityGalleryAdmin(admin.ModelAdmin):
+    list_display = ['activity_name', 'created_time']
+
+
+class ActivityGalleryPhotoAdmin(admin.ModelAdmin):
+    list_display = ['activity_gallery', 'photo_url']
+
+
+class ConfigInfoAdmin(admin.ModelAdmin):
+    list_display = ['index_photo_url']
+
+
 admin.site.register(Post, PostAdmin)
-admin.site.register(MemberInfo)
-admin.site.register(MemberGrade)
-admin.site.register(ActivityGalleryPhoto)
-admin.site.register(ActivityGallery)
-admin.site.register(ConfigInfo)
+admin.site.register(MemberInfo, MemberInfoAdmin)
+admin.site.register(MemberGrade, MemberGradeAdmin)
+admin.site.register(ActivityGalleryPhoto, ActivityGalleryPhotoAdmin)
+admin.site.register(ActivityGallery, ActivityGalleryAdmin)
+admin.site.register(ConfigInfo, ConfigInfoAdmin)
 
