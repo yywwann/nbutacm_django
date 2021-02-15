@@ -23,8 +23,8 @@
                                 <img class="rounded-circle img-fluid"
                                      src="{{activity_gallery.thumbnail_url}}">
                             </a>
-                            {% for photo in  activity_gallery.photo_list%}
-                            <a href="{{photo.photo_url}}"></a><img src="{{photo.photo_url}}">
+                            {% for photo_url in  activity_gallery.photo_list%}
+                            <a href="{{photo_url}}"></a><img src="{{photo_url}}">
                             {% endfor%}
                         </div>
                         <div class="timeline-panel">
