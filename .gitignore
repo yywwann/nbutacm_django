@@ -12,15 +12,16 @@ yarn-debug.log*
 yarn-error.log*
 
 # Editor directories and files
-.idea
-.vscode
+.idea/
+.vscode/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw*
+static/
 
 # django 数据 缓存
 database*/
 migrations/
-"__pycache__/"
+__pycache__/
