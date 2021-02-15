@@ -15,7 +15,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./db:/var/lib/mysql
+      - ./database:/var/lib/mysql
     environment:
       - MYSQL_HOST=localhost
       - MYSQL_PORT=3306
@@ -39,8 +39,8 @@ services:
     container_name: nbutacm
     working_dir: /app
     volumes:
-      - database:/app/database
-      - static:/app/static
+      - ./database:/app/database
+      - ./static:/app/static
     #env_files:
     #  - .envs/.production
     ports:
@@ -54,7 +54,7 @@ services:
     image: nbutacm_nginx
     container_name: nbutacm_nginx
     volumes:
-      - static:/apps/nbutacm/static
+      - ./static:/apps/nbutacm/static
     ports:
       - "80:80"
 
