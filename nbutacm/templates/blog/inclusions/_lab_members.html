@@ -16,9 +16,15 @@
                             </div>
                             <div class="buttons">
                                 {% for member in value %}
-                                <a class="btn btn-primary" style="background-color:{{ member.color }};" role="button"
-                                     href="{{member.url}}" target="_blank">{{member.name}}
-                                </a>
+                                    {% if member.url == '#' %}
+                                        <div class="btn" style="background-color:{{ member.color }};" role="button"
+                                            href="{{member.url}}" target="_blank">{{member.name}}
+                                        </div>
+                                    {% else %}
+                                        <a class="btn btn-primary" style="background-color:{{ member.color }};" role="button"
+                                            href="{{member.url}}" target="_blank">{{member.name}}
+                                        </a>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>
