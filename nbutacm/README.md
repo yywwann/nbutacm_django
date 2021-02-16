@@ -12,7 +12,7 @@ $ docker-compose -f local.yml up
 ```shell script
 $ git pull
 # 停止所有容器
-$ docker-compose -f production.yml stop nbutacm nbutacm_nginx redis mysql
+$ docker-compose -f production.yml stop
 # 文件有更改,需要重建创建镜像
 $ docker-compose -f production.yml build  
 # 先启动 mysql,几十秒后再 up 整个
