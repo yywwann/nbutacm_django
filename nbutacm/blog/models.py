@@ -78,7 +78,7 @@ class ActivityGalleryPhoto(models.Model):
 
 
 class ConfigInfo(models.Model):
-    index_photo_url = models.CharField('主页图片地址', max_length=200)
+    index_photo_url = models.CharField('主页图片地址', max_length=200, default='https://ultronxross.xyz/cdn/img/nbutacm/header-bg.jpg')
 
     class Meta:
         verbose_name = '配置信息'
