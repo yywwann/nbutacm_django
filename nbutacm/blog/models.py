@@ -51,7 +51,8 @@ class MemberInfo(models.Model):
 
 
 class ActivityGallery(models.Model):
-    thumbnail_url = models.CharField('略缩图地址', max_length=200)
+    thumbnail_complete_url = models.CharField('略缩图原图地址', max_length=200, default='#')
+    thumbnail_url = models.CharField('略缩图地址', max_length=200, default='#')
     activity_time = models.CharField('活动时间', max_length=200)
     activity_name = models.CharField('活动名称', max_length=200)
     activity_note = models.CharField('活动记录', max_length=300)

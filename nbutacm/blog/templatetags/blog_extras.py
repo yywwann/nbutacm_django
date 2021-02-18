@@ -50,6 +50,7 @@ def show_activity_gallery(context):
     for activity in activity_gallery:
         temp = {
             'index': index,
+            'thumbnail_complete_url': activity.thumbnail_complete_url,
             'thumbnail_url': activity.thumbnail_url,
             'activity_time': activity.activity_time,
             'activity_name': activity.activity_name,
