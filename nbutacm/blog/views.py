@@ -23,6 +23,19 @@ def post_list(request):
 
 def detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
+
+    ############### 新增加的代码   article.content是我的文章的model中对应的文章内容
+    # import re
+    # from urllib.parse import urlencode
+    # pattern = re.compile(r'(\$\$.*?\$\$)', re.S)
+    # latex1 = re.sub(pattern, lambda m: '<div align=center><img src="http://latex.codecogs.com/gif.latex?' + urlencode(
+    #     {'': m.group(0).replace('$$', '').replace(r'\n', '')})[1:] + '"></div>', post.body, 0)
+    # pattern2 = re.compile(r'(\$.*?\$)', re.S)
+    # post.body = re.sub(pattern2, lambda m: '<img src="' + 'http://latex.codecogs.com/gif.latex?' + urlencode(
+    #     {'': m.group(0).replace('$', '').replace(r'\n', '')})[1:] + '">', latex1, 0)
+    # post.body = post.body.replace('+', '')
+    ##############
+
     post.body = markdown.markdown(post.body, extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
