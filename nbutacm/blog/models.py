@@ -39,7 +39,7 @@ class MemberGrade(models.Model):
 class MemberInfo(models.Model):
     name = models.CharField('姓名', max_length=70)
     color = models.CharField('按钮颜色', max_length=70)
-    url = models.CharField('博客链接', max_length=70)
+    url = models.CharField('博客链接', max_length=70, default='#')
     grade = models.ForeignKey(MemberGrade, on_delete=models.CASCADE)
 
     class Meta:
