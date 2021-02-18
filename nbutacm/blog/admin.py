@@ -1,10 +1,14 @@
 from django.contrib import admin
+from django.db import models
 from .models import Post, MemberInfo, MemberGrade, ActivityGalleryPhoto, ActivityGallery, ConfigInfo
-
+from mdeditor.widgets import MDEditorWidget
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_time', 'modified_time']
     fields = ['title', 'body']
+    formfield_overrides = {
+        models.TextField: {'widget': MDEditorWidget}
+    }
 
 
 class MemberGradeAdmin(admin.ModelAdmin):

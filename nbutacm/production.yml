@@ -4,6 +4,7 @@ volumes:
   static:
   database:
   logs:
+  media:
 
 services:
 
@@ -42,6 +43,7 @@ services:
     volumes:
       - ./database:/app/database
       - ./static:/app/static
+      - ./media:/app/media
     #env_files:
     #  - .envs/.production
     ports:
@@ -57,6 +59,7 @@ services:
     volumes:
       - ./static:/apps/nbutacm/static
       - ./logs/nginx:/var/log/nginx
+      - ./media:/apps/nbutacm/media
     ports:
       - "80:80"
 

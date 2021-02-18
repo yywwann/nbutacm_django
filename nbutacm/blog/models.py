@@ -1,12 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from mdeditor.fields import MDTextField
 # Create your models here.
 
 
 class Post(models.Model):
     title = models.CharField('标题', max_length=70)
-    body = models.TextField('正文')
+    body = MDTextField()
     created_time = models.DateTimeField('创建时间', default=timezone.now)
     modified_time = models.DateTimeField('修改时间')
 
