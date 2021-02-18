@@ -23,5 +23,4 @@ static/
 
 # django 数据 缓存
 database*/
-migrations/
 __pycache__/
