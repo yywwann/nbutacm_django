@@ -34,7 +34,7 @@ function addPic(ID, picList) {
     setTimeout(5000);
     var len = document.getElementsByClassName(ID)[0].getElementsByTagName("a").length;
     // console.log(len, picList.length + 1)
-    if (len >= picList.length + 1) {
+    if (len > picList.length + 1) {
         return;
     }
     for (var i = 0; i < picList.length; i++) {
