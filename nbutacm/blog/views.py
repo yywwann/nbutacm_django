@@ -1,12 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 import markdown
+import re
 # Create your views here.
 from .models import Post
 from django.http import HttpResponse
 # redis cache
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page
-
+from django.utils.text import slugify
+from markdown.extensions.toc import TocExtension
 
 # @cache_page(60 * 60)
 def index(request):
@@ -24,23 +26,16 @@ def post_list(request):
 def detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
 
-    ############### 新增加的代码   article.content是我的文章的model中对应的文章内容
-    # import re
-    # from urllib.parse import urlencode
-    # pattern = re.compile(r'(\$\$.*?\$\$)', re.S)
-    # latex1 = re.sub(pattern, lambda m: '<div align=center><img src="http://latex.codecogs.com/gif.latex?' + urlencode(
-    #     {'': m.group(0).replace('$$', '').replace(r'\n', '')})[1:] + '"></div>', post.body, 0)
-    # pattern2 = re.compile(r'(\$.*?\$)', re.S)
-    # post.body = re.sub(pattern2, lambda m: '<img src="' + 'http://latex.codecogs.com/gif.latex?' + urlencode(
-    #     {'': m.group(0).replace('$', '').replace(r'\n', '')})[1:] + '">', latex1, 0)
-    # post.body = post.body.replace('+', '')
-    ##############
-
-    post.body = markdown.markdown(post.body, extensions=[
+    md = markdown.Markdown(extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
-        'markdown.extensions.toc',
+        TocExtension(slugify=slugify),
     ])
+    post.body = md.convert(post.body)
+
+    m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
+    post.toc = m.group(1) if m is not None else ''
+
     return render(request, 'blog/detail.html', context={
         'post': post
     })
