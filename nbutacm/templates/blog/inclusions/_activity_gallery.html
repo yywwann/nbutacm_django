@@ -19,7 +19,8 @@
                                                                  src="{{ activity_gallery.thumbnail_url }}">
                                 </div>
                             {% else %}
-                                <div id='gallery{{ forloop.counter0 }}' class="timeline-image gallery">
+                                <div id='gallery{{ forloop.counter0 }}' class="timeline-image gallery{{ forloop.counter0 }}"
+                                     onmouseover="addPic('gallery{{ forloop.counter0 }}', {{ activity_gallery.photo_list }})">
 
                                     <a href="{{ activity_gallery.thumbnail_complete_url }}">
                                         <div class="rounded-circle photo-hover">
@@ -28,9 +29,9 @@
                                         <img class="rounded-circle img-fluid"
                                              src="{{ activity_gallery.thumbnail_url }}">
                                     </a>
-                                    {% for photo_url in  activity_gallery.photo_list %}
-                                        <a href="{{ photo_url }}"><img style="display: none;" src="{{ photo_url }}"></a>
-                                    {% endfor %}
+{#                                    {% for photo_url in  activity_gallery.photo_list %}#}
+{#                                        <a href="{{ photo_url }}"><img style="display: none;" src="{{ photo_url }}"></a>#}
+{#                                    {% endfor %}#}
                                 </div>
                             {% endif %}
 

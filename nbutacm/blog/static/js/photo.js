@@ -1,5 +1,5 @@
 window.onload = function () {
-    setTimeout(5000);
+    // setTimeout(5000);
     // addTag_a("photo-16", 34);
     // addTag_a("photo-15", 22);
     // addTag_a("photo-14", 11);
@@ -15,9 +15,9 @@ window.onload = function () {
     //       sub[i].style.display = "none";
     //   }
     // }
-    baguetteBox.run('.gallery', {
-        async: true
-    });
+    // baguetteBox.run('.gallery', {
+    //     async: true
+    // });
 }
 
 function addTag_a(ID /*parentId*/, num /*number of photo*/) {
@@ -31,14 +31,16 @@ function addTag_a(ID /*parentId*/, num /*number of photo*/) {
 }
 
 function addPic(ID, picList) {
-    var len = document.getElementsByClassName(ID)[0].getElementsByTagName("a");
-    if (len == picList.length + 1) {
+    setTimeout(5000);
+    var len = document.getElementsByClassName(ID)[0].getElementsByTagName("a").length;
+    // console.log(len, picList.length + 1)
+    if (len >= picList.length + 1) {
         return;
     }
     for (var i = 0; i < picList.length; i++) {
         $("#" + ID).append("<a href=\"" + picList[i] + "\"><img style=\"display: none;\" src=\"" + picList[i] + "\"></a>")
     }
-    // baguetteBox.run('.'+ID, {
-    //     async: true
-    // });
+    baguetteBox.run('.'+ID, {
+        async: true
+    });
 }
