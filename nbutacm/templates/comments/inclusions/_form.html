@@ -1,0 +1,67 @@
+{#<form action="{% url 'comments:comment' post.pk %}" method="post" class="comment-form">#}
+{#    {% csrf_token %}#}
+{#    <div class="row">#}
+{#        <div class="col-md-4">#}
+{#            <label for="{{ form.name.id_for_label }}">{{ form.name.label }}：</label>#}
+{#            {{ form.name }}#}
+{#            {{ form.name.errors }}#}
+{#        </div>#}
+{#        <div class="col-md-12">#}
+{#            <label for="{{ form.text.id_for_label }}">{{ form.text.label }}：</label>#}
+{#            {{ form.text }}#}
+{#            {{ form.text.errors }}#}
+{#            <button type="submit" class="comment-btn">发表</button>#}
+{#        </div>#}
+{#    </div>    <!-- row -->#}
+{#</form>#}
+
+
+{#<section class="contact-clean">#}
+{#    <form action="{% url 'comments:comment' post.pk %}" method="post">#}
+{#        {% csrf_token %}#}
+{#        <h2 class="text-center">发表评论</h2>#}
+{#        <div class="form-group">#}
+{#            <input class="form-control" type="text" name="name" maxlength="50" placeholder="Name"#}
+{#                   required id="id_name"/>#}
+{#            {{ form.name.errors }}#}
+{#        </div>#}
+{#        <div class="form-group"><input class="form-control is-invalid" type="email" name="email" placeholder="Email" /><small class="form-text text-danger">Please enter a correct email address.</small></div>#}
+{#        <div class="form-group">#}
+{#            <textarea class="form-control" name="text" placeholder="Message"#}
+{#                      rows="14" required id="id_text"></textarea>#}
+{#            {{ form.text.errors }}#}
+{#        </div>#}
+{#        <div class="form-group">#}
+{#            <button class="btn btn-primary" type="submit">发表</button>#}
+{#        </div>#}
+{#    </form>#}
+{#</section>#}
+
+<aside class="create-comment" id="create-comment">
+    <hr>
+
+    <h2><i class="fa fa-pencil"></i> 发表评论</h2>
+
+    <form action="{% url 'comments:comment' post.pk %}" method="post" accept-charset="utf-8">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" name="name" id="comment-name" placeholder="Your Name" class="form-control input-lg"
+                       maxlength="50" required id="id_name">
+                {{ form.name.errors }}
+            </div>
+            {#            <div class="col-md-6">#}
+            {#                <input type="email" name="email" id="comment-email" placeholder="Email" class="form-control input-lg">#}
+            {#            </div>#}
+        </div>
+
+        {#        <input type="url" name="name" id="comment-url" placeholder="Website" class="form-control input-lg">#}
+
+        <textarea rows="10" name="text" id="comment-body" placeholder="Your Comment"
+                  class="form-control input-lg" rows="14" required id="id_text"></textarea>
+        {{ form.text.errors }}
+        <div class="buttons clearfix">
+            <button type="submit" class="btn btn-xlarge btn-clean-one">Submit</button>
+        </div>
+    </form>
+</aside>

@@ -216,10 +216,12 @@
   50% {
     -webkit-transform: translate(-65px, 0);
   }
+}
 
-  @keyframes object_eight {
-    50% {
-      transform: translate(-65px, 0);
-      -webkit-transform: translate(-65px, 0);
-    }
+@keyframes object_eight {
+  50% {
+    transform: translate(-65px, 0);
+    -webkit-transform: translate(-65px, 0);
   }
+}
+

@@ -5,15 +5,43 @@ from mdeditor.fields import MDTextField
 # Create your models here.
 
 
+class Category(models.Model):
+
+    name = models.CharField("分类名", max_length=100)
+
+    class Meta:
+        verbose_name = "分类"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
+
+
+class Tag(models.Model):
+
+    name = models.CharField("标签名", max_length=100)
+
+    class Meta:
+        verbose_name = "标签"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
+
+
 class Post(models.Model):
     title = models.CharField('标题', max_length=70)
     body = MDTextField()
     created_time = models.DateTimeField('创建时间', default=timezone.now)
     modified_time = models.DateTimeField('修改时间')
+    category = models.ForeignKey(Category, verbose_name="分类", blank=True, null=True, on_delete=models.CASCADE)
+    tags = models.ManyToManyField(Tag, verbose_name="标签", blank=True)
+    views = models.PositiveIntegerField(default=0)
 
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = verbose_name
+        ordering = ["-created_time"]
 
     def __str__(self):
         return self.title
@@ -25,6 +53,9 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
 
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
 
 class MemberGrade(models.Model):
     name = models.CharField('年级', max_length=70)

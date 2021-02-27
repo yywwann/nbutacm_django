@@ -1,11 +1,19 @@
 from django.contrib import admin
 from django.db import models
-from .models import Post, MemberInfo, MemberGrade, ActivityGalleryPhoto, ActivityGallery, ConfigInfo
+from .models import Category, Tag, Post, MemberInfo, MemberGrade, ActivityGalleryPhoto, ActivityGallery, ConfigInfo
 from mdeditor.widgets import MDEditorWidget
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_time', 'modified_time']
-    fields = ['title', 'body']
+    fields = ['title', 'body', 'category', 'tags']
     formfield_overrides = {
         models.TextField: {'widget': MDEditorWidget}
     }
@@ -31,6 +39,8 @@ class ConfigInfoAdmin(admin.ModelAdmin):
     list_display = ['index_photo_url']
 
 
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Tag, TagAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(MemberInfo, MemberInfoAdmin)
 admin.site.register(MemberGrade, MemberGradeAdmin)
