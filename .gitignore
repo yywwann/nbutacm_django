@@ -19,7 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
-static/
+#.static/
 
 # django 数据 缓存
 database*/

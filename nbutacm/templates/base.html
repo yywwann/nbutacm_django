@@ -14,13 +14,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
     <link rel="stylesheet" href="{% static '/fonts/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static '/css/Highlight-Clean.css' %}">
 
 
 
     {% block css %}
 
-    {% endblock %}
+    {% endblock css%}
 </head>
 
 <body id="page-top">
@@ -77,7 +76,7 @@
 {% endif %}
 {% block main %}
 
-{% endblock %}
+{% endblock main%}
 <footer id="foot">
     <div class="container" id='footer'>
         <div class="row">
@@ -120,13 +119,10 @@
 </body>
 <script src="{% static '/js/jquery.min.js' %}"></script>
 <script src="{% static '/js/bootstrap.min.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-
-<!--<script src="{% static '/js/jquery.min.js' %}"></script>-->
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>#}
 
 {% block js %}
 
-{% endblock %}
+{% endblock js%}
 
 </html>

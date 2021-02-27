@@ -13,7 +13,7 @@ class TagAdmin(admin.ModelAdmin):
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_time', 'modified_time']
-    fields = ['title', 'body', 'category', 'tags']
+    fields = ['title', 'body', 'category', 'tags', 'thumbnail_complete_url', 'thumbnail_url', 'excerpt']
     formfield_overrides = {
         models.TextField: {'widget': MDEditorWidget}
     }
