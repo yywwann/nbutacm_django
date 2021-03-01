@@ -15,10 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
 
 
 # Application definition
@@ -30,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pure_pagination',  # 分页
     'blog.apps.BlogConfig',
     'mdeditor',
     'comments.apps.CommentsConfig',
@@ -65,7 +64,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'nbutacm.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -87,17 +85,16 @@ DATABASES = {
 
 CACHES = {
     "default": {
-        "BACKEND": "django_redis.cache.RedisCache",		# 使用django-redis的缓存
-        "LOCATION": "redis://redis:6379",			# redis数据库的位置
+        "BACKEND": "django_redis.cache.RedisCache",  # 使用django-redis的缓存
+        "LOCATION": "redis://redis:6379",  # redis数据库的位置
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "CONNECTION_POOL_KWARGS": {"max_connections": 100},
-            "DECODE_RESPONSES": True,			# 自动将byte转成字符串
-            "PASSWORD": "szdfhjklhasjklfe",						# 设置密码
+            "DECODE_RESPONSES": True,  # 自动将byte转成字符串
+            "PASSWORD": "szdfhjklhasjklfe",  # 设置密码
         }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -117,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -131,7 +127,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -142,30 +137,37 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 
 MDEDITOR_CONFIGS = {
-'default':{
-    'width': '90%',  # 自定义编辑框宽度
-    'heigth': 500,   # 自定义编辑框高度
-    'toolbar': ["undo", "redo", "|",
-                "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
-                "h1", "h2", "h3", "h5", "h6", "|",
-                "list-ul", "list-ol", "hr", "|",
-                "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime",
-                "emoji", "html-entities", "pagebreak", "goto-line", "|",
-                "help", "info",
-                "||", "preview", "watch", "fullscreen"],  # 自定义编辑框工具栏
-    'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp"],  # 图片上传格式类型
-    'image_folder': 'editor',  # 图片保存文件夹名称
-    'theme': 'default',  # 编辑框主题 ，dark / default
-    'preview_theme': 'default',  # 预览区域主题， dark / default
-    'editor_theme': 'default',  # edit区域主题，pastel-on-dark / default
-    'toolbar_autofixed': True,  # 工具栏是否吸顶
-    'search_replace': True,  # 是否开启查找替换
-    'emoji': True,  # 是否开启表情功能
-    'tex': True,  # 是否开启 tex 图表功能
-    'flow_chart': True,  # 是否开启流程图功能
-    'sequence': True,  # 是否开启序列图功能
-    'watch': True,  # 实时预览
-    'lineWrapping': False,  # 自动换行
-    'lineNumbers': False  # 行号
+    'default': {
+        'width': '90%',  # 自定义编辑框宽度
+        'heigth': 500,  # 自定义编辑框高度
+        'toolbar': ["undo", "redo", "|",
+                    "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+                    "h1", "h2", "h3", "h5", "h6", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime",
+                    "emoji", "html-entities", "pagebreak", "goto-line", "|",
+                    "help", "info",
+                    "||", "preview", "watch", "fullscreen"],  # 自定义编辑框工具栏
+        'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp"],  # 图片上传格式类型
+        'image_folder': 'editor',  # 图片保存文件夹名称
+        'theme': 'default',  # 编辑框主题 ，dark / default
+        'preview_theme': 'default',  # 预览区域主题， dark / default
+        'editor_theme': 'default',  # edit区域主题，pastel-on-dark / default
+        'toolbar_autofixed': True,  # 工具栏是否吸顶
+        'search_replace': True,  # 是否开启查找替换
+        'emoji': True,  # 是否开启表情功能
+        'tex': True,  # 是否开启 tex 图表功能
+        'flow_chart': True,  # 是否开启流程图功能
+        'sequence': True,  # 是否开启序列图功能
+        'watch': True,  # 实时预览
+        'lineWrapping': False,  # 自动换行
+        'lineNumbers': False  # 行号
     }
+}
+
+# django-pure-pagination 分页设置
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 4,  # 分页条当前页前后应该显示的总页数（两边均匀分布，因此要设置为偶数），
+    'MARGIN_PAGES_DISPLAYED': 2,  # 分页条开头和结尾显示的页数
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,  # 当请求了不存在页，显示第一页
 }

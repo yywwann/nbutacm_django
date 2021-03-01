@@ -1029,20 +1029,20 @@ input::-moz-focus-inner {
 }
 
 /**
- * pagination - (_pagination.scss)
+ * post-pagination - (_pagination.scss)
  * ------------------------------------------------------------------- */
-.pagination {
+.post-pagination {
 	margin: 3rem auto;
 	text-align: center;
 }
 
-.pagination ul li {
+.post-pagination ul li {
 	display: inline-block;
 	margin: 0;
 	padding: 0;
 }
 
-.pagination .page-numbers {
+.post-pagination .page-numbers {
 	font-family: "montserrat-bold", sans-serif;
 	font-size: 15px;
 	line-height: 24px;
@@ -1060,19 +1060,19 @@ input::-moz-focus-inner {
 	transition: all 0.3s ease-in-out;
 }
 
-.pagination .page-numbers:hover {
+.post-pagination .page-numbers:hover {
 	background: #000000;
 	color: white;
 }
 
-.pagination .current,
-.pagination .current:hover {
+.post-pagination .current,
+.post-pagination .current:hover {
 	background-color: #000000;
 	color: white;
 }
 
-.pagination .inactive,
-.pagination .inactive:hover {
+.post-pagination .inactive,
+.post-pagination .inactive:hover {
 	background-color: #DBDBDB;
 	color: #919191;
 }
@@ -2349,7 +2349,7 @@ header .logo a {
 	/*max-width: 1440px;*/
 }
 
-#bricks .pagination {
+#bricks .post-pagination {
 	margin-top: 6rem;
 }
 

@@ -12,3 +12,5 @@ django-redis
 mysqlclient==1.4.6
 markdown
 django-mdeditor
+django-pure-pagination
+Faker

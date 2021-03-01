@@ -1,0 +1,28 @@
+<div class="post-row">
+
+    <nav class="post-pagination">
+        {% if page_obj.has_previous %}
+            <a href="?{{ page_obj.previous_page_number.querystring }}"
+               class="page-numbers prev">Prev</a>
+        {% else %}
+            <span class="page-numbers prev inactive">Prev</span>
+        {% endif %}
+        {% for page in page_obj.pages %}
+            {% if page %}
+                {% ifequal page page_obj.number %}
+                    <a href="#" class="page-numbers current">{{ page }}</a>
+                {% else %}
+                    <a href="?{{ page.querystring }}" class="page-numbers">{{ page }}</a>
+                {% endifequal %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <a href="?{{ page_obj.next_page_number.querystring }}" class="page-numbers next">Next</a>
+        {% else %}
+            <span class="page-numbers next inactive">Next</span>
+        {% endif %}
+    </nav>
+
+</div>
