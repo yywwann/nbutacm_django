@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'mdeditor',
     'comments.apps.CommentsConfig',
+    'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -170,4 +172,12 @@ PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 4,  # 分页条当前页前后应该显示的总页数（两边均匀分布，因此要设置为偶数），
     'MARGIN_PAGES_DISPLAYED': 2,  # 分页条开头和结尾显示的页数
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,  # 当请求了不存在页，显示第一页
+}
+
+REST_FRAMEWORK = {
+    # 设置 DEFAULT_PAGINATION_CLASS 后，将全局启用分页，所有 List 接口的返回结果都会被分页。
+    # 如果想单独控制每个接口的分页情况，可不设置这个选项，而是在视图函数中进行配置
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    # 这个选项控制分页后每页的资源个数
+    "PAGE_SIZE": 10,
 }

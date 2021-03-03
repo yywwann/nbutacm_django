@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 import markdown
 import re
 # Create your views here.
-from .models import Post
+from .models import Post, Tag, Category
 from django.http import HttpResponse
 # redis cache
 from django.core.cache import cache
@@ -103,3 +103,105 @@ class PostDetailView(DetailView):
 #         return super(CategoryView, self).get_queryset().filter(category=cate)
 
 
+# ---------RESTFUL API-----------------
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+
+from .models import Post
+from .serializers import PostListSerializer, PostRetrieveSerializer, TagSerializer, CategorySerializer
+from comments.serializers import CommentSerializer
+
+
+
+
+@api_view(http_method_names=["GET"])
+def index(request):
+    post_list = Post.objects.all().order_by('-created_time')
+    serializer = PostListSerializer(post_list, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+from rest_framework.generics import ListAPIView
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
+from rest_framework.permissions import AllowAny
+
+
+class IndexPostListAPIView(ListAPIView):
+    serializer_class = PostListSerializer
+    queryset = Post.objects.all()
+    pagination_class = PageNumberPagination
+    permission_classes = [AllowAny]
+
+
+from rest_framework import viewsets
+from rest_framework import mixins
+from rest_framework.decorators import action
+
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import PostFilter
+
+
+class PostViewSet(
+    mixins.ListModelMixin,  # list /posts/
+    mixins.RetrieveModelMixin,  # detail /posts/:pk/
+    viewsets.GenericViewSet
+):
+    serializer_class = PostListSerializer
+    queryset = Post.objects.all()
+    pagination_class = PageNumberPagination
+    permission_classes = [AllowAny]
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = PostFilter
+
+    serializer_class_table = {
+        'list': PostListSerializer,
+        'retrieve': PostRetrieveSerializer,
+    }
+
+    def get_serializer_class(self):
+        return self.serializer_class_table.get(
+            self.action, super().get_serializer_class()
+        )
+
+    @action(
+        methods=["GET"],
+        detail=True,
+        url_path="comments",
+        url_name="comment",
+        pagination_class=LimitOffsetPagination,
+        serializer_class=CommentSerializer,
+    )
+    def list_comments(self, request, *args, **kwargs):
+        # 根据 URL 传入的参数值（文章 id）获取到博客文章记录
+        post = self.get_object()
+        # 获取文章下关联的全部评论
+        queryset = post.comment_set.all().order_by("-created_time")
+        # 对评论列表进行分页，根据 URL 传入的参数获取指定页的评论
+        page = self.paginate_queryset(queryset)
+        # 序列化评论
+        serializer = self.get_serializer(page, many=True)
+        # 返回分页后的评论列表
+        return self.get_paginated_response(serializer.data)
+
+class TagViewSet(
+    mixins.ListModelMixin,  # list /tags/
+    mixins.RetrieveModelMixin,  # detail /tags/:pk/
+    viewsets.GenericViewSet
+):
+    serializer_class = TagSerializer
+    queryset = Tag.objects.all()
+    # pagination_class = PageNumberPagination  #  默认使用全局变量
+    permission_classes = [AllowAny]
+
+
+class CategoryViewSet(
+    mixins.ListModelMixin,  # list /categorys/
+    mixins.RetrieveModelMixin,  # detail /categorys/:pk/
+    viewsets.GenericViewSet
+):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+    # pagination_class = PageNumberPagination
+    permission_classes = [AllowAny]

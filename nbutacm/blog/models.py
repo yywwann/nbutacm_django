@@ -2,7 +2,12 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from mdeditor.fields import MDTextField
-# Create your models here.
+
+import re
+import markdown
+from markdown.extensions.toc import TocExtension
+from django.utils.text import slugify
+from django.utils.functional import cached_property
 
 
 class Category(models.Model):
@@ -27,6 +32,22 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+
+def generate_rich_content(value):
+    md = markdown.Markdown(
+        extensions=[
+            "markdown.extensions.extra",
+            "markdown.extensions.codehilite",
+            # 记得在顶部引入 TocExtension 和 slugify
+            TocExtension(slugify=slugify),
+        ]
+    )
+    content = md.convert(value)
+    m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
+    toc = m.group(1) if m is not None else ""
+    return {"content": content, "toc": toc}
+
 
 
 class Post(models.Model):
@@ -59,6 +80,18 @@ class Post(models.Model):
     def increase_views(self):
         self.views += 1
         self.save(update_fields=['views'])
+
+    @property
+    def toc(self):
+        return self.rich_content.get("toc", "")
+
+    @property
+    def body_html(self):
+        return self.rich_content.get("content", "")
+
+    @cached_property
+    def rich_content(self):
+        return generate_rich_content(self.body)
 
 class MemberGrade(models.Model):
     name = models.CharField('年级', max_length=70)

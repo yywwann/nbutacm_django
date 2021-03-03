@@ -14,7 +14,8 @@ WORKDIR /app
 # RUN pipenv install --system --deploy --ignore-pipfile
 
 COPY requirements.txt /app/requirements.txt
-RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+#RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 # 安装相关依赖
 
 COPY ./compose/local/start.sh /start.sh

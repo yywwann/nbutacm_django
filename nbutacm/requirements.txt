@@ -14,3 +14,5 @@ markdown
 django-mdeditor
 django-pure-pagination
 Faker
+djangorestframework
+django-filter

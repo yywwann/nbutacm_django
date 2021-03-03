@@ -13,7 +13,8 @@ WORKDIR /app
 # 设置工作目录，以后在基于此镜像启动的 Docker 容器中执行的命令，都会以这个目录为当前工作目录。
 
 COPY requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+#RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 # --no-cache
 # 安装相关依赖
 
