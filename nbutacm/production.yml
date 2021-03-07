@@ -50,16 +50,27 @@ services:
       - "8000:8000"
     command: /start.sh
 
-  nbutacm_nginx:
+#  nbutacm_nginx:
+#    build:
+#      context: .
+#      dockerfile: compose/production/nginx/Dockerfile
+#    image: nbutacm_nginx
+#    container_name: nbutacm_nginx
+#    volumes:
+#      - ./static:/apps/nbutacm/static
+#      - ./logs/nginx:/var/log/nginx
+#      - ./media:/apps/nbutacm/media
+#    ports:
+#      - "80:80"
+  nbutacm_my_nginx:
     build:
       context: .
-      dockerfile: compose/production/nginx/Dockerfile
-    image: nbutacm_nginx
-    container_name: nbutacm_nginx
+      dackerfile: compose/production/my_nginx/Dockerfile
+    image: nbutacm_my_nginx
+    container_name: nbutacm_my_nginx
     volumes:
       - ./static:/apps/nbutacm/static
-      - ./logs/nginx:/var/log/nginx
       - ./media:/apps/nbutacm/media
+      - .logs/nginx:/usr/local/nginx/logs
     ports:
       - "80:80"
-
