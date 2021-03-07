@@ -116,11 +116,11 @@ from comments.serializers import CommentSerializer
 
 
 
-@api_view(http_method_names=["GET"])
-def index(request):
-    post_list = Post.objects.all().order_by('-created_time')
-    serializer = PostListSerializer(post_list, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+# @api_view(http_method_names=["GET"])
+# def index(request):
+#     post_list = Post.objects.all().order_by('-created_time')
+#     serializer = PostListSerializer(post_list, many=True)
+#     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 from rest_framework.generics import ListAPIView
