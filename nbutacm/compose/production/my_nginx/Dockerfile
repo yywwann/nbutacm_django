@@ -18,7 +18,7 @@ RUN wget http://nginx.org/download/nginx-1.18.0.tar.gz && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 ENV PATH $PATH:/usr/local/nginx/sbin
-COPY ./nginx.conf /usr/local/nginx/conf/nginx.conf
+COPY ./compose/production/my_nginx/nginx.conf /usr/local/nginx/conf/nginx.conf
 WORKDIR /usr/local/nginx
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
