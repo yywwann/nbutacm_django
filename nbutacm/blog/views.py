@@ -60,6 +60,7 @@ class PostView(PaginationMixin, ListView):
     context_object_name = 'post_list'
     paginate_by = 8
 
+
 class PostDetailView(DetailView):
     # 这些属性的含义和 ListView 是一样的
     model = Post
@@ -92,7 +93,8 @@ class PostDetailView(DetailView):
         post.body = md.convert(post.body)
 
         m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
-        post.toc = m.group(1) if m is not None else ''
+        # models 中已经写了 toc
+        # post.toc = m.group(1) if m is not None else ''
 
         return post
 
