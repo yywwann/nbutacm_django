@@ -65,7 +65,7 @@ services:
   nbutacm_my_nginx:
     build:
       context: .
-      dackerfile: compose/production/my_nginx/Dockerfile
+      dockerfile: compose/production/my_nginx/Dockerfile
     image: nbutacm_my_nginx
     container_name: nbutacm_my_nginx
     volumes:
