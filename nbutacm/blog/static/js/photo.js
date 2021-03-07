@@ -34,13 +34,16 @@ function addPic(ID, picList) {
     setTimeout(5000);
     var len = document.getElementsByClassName(ID)[0].getElementsByTagName("a").length;
     // console.log(len, picList.length + 1)
-    if (len > picList.length + 1) {
+    if (len >= picList.length + 1) {
+        baguetteBox.run('.' + ID, {
+            async: true
+        });
         return;
     }
     for (var i = 0; i < picList.length; i++) {
         $("#" + ID).append("<a href=\"" + picList[i] + "\"><img style=\"display: none;\" src=\"" + picList[i] + "\"></a>")
     }
-    baguetteBox.run('.'+ID, {
+    baguetteBox.run('.' + ID, {
         async: true
     });
 }
